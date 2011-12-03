@@ -1,6 +1,7 @@
 {
   "author": "Julien Genestoux <julien@superfeedr.com> (http://ouvre-boite.com)",
   "name": "superfeedr",
+  "main": "./lib/superfeedr.js",
   "description": "A package to interact with Superfeedr's API and get pushed RSS content",
   "version": "0.0.0",
   "homepage": "http://superfeedr.com/documentation#xmpp_pubsub",
@@ -11,6 +12,10 @@
   "engines": {
     "node": "~0.6.3"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+      "node-xmpp": ">=0.3.1"
+  },
+  "devDependencies": {
+      "mocha": ">=0.2.0"
+  }
 }
