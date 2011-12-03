@@ -1,0 +1,16 @@
+{
+  "author": "Julien Genestoux <julien@superfeedr.com> (http://ouvre-boite.com)",
+  "name": "superfeedr",
+  "description": "A package to interact with Superfeedr's API and get pushed RSS content",
+  "version": "0.0.0",
+  "homepage": "http://superfeedr.com/documentation#xmpp_pubsub",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/superfeedr/superfeedr-node.git"
+  },
+  "engines": {
+    "node": "~0.6.3"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
