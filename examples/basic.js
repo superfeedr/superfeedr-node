@@ -1,6 +1,6 @@
 var Superfeedr = require('superfeedr');
 
-Superfeedr.connect('login', 'password', function(client) {
+Superfeedr('login', 'password', function(client) {
     client.on('notification', function(url, entries) {
         // Do stuff with the entries!
     });
