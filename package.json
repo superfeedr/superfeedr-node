@@ -16,6 +16,6 @@
       "node-xmpp": ">=0.3.1"
   },
   "devDependencies": {
-      "mocha": ">=0.2.0"
+      "mocha": "0.1.0"
   }
 }
