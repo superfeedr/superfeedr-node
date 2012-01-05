@@ -56,13 +56,13 @@ describe('Subscription', function(){
                 done(new Error("This notification's entry must be an new entry."));
             }
             else if(notification.entries[0].title !== "Hello") {
-                done(new Error("This notification's entry doesn't have 'hello' for title."));
+                done(new Error("This notification's entry doesn't have 'Hello' for title."));
             }
             else if(notification.entries[0].summary !== "") {
                 done(new Error("This notification's entry has a non empty summary"));
             }
             else if(notification.entries[0].content !== "World") {
-                done(new Error("This notification's entry doesn't have 'world' for title."));
+                done(new Error("This notification's entry doesn't have 'World' for message."));
             }
             else {
                 done(); // Success. No error for now.
