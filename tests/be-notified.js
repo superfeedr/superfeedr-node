@@ -34,22 +34,22 @@ describe('Subscription', function(){
             else if(notification.feed.nextFetch < new Date().getTime()) {
                 done(new Error("This notification's feed' nextFetch should be in the future"));
             }
-            else if(notification.feed.lastFetch > new Date().getTime()) {
+            else if(notification.feed.lastFetch >= new Date().getTime()) {
                 done(new Error("This notification's feed' lastFetch should be in the past"));
             }
-            else if(notification.feed.lastParse > new Date().getTime()) {
+            else if(notification.feed.lastParse >= new Date().getTime()) {
                 done(new Error("This notification's feed' lastParse should be in the past"));
             }
-            else if(notification.feed.lastMaintenance > new Date().getTime()) {
+            else if(notification.feed.lastMaintenance >= new Date().getTime()) {
                 done(new Error("This notification's feed' lastMaintenance should be in the past"));
             }
             else if(notification.entries.length != 1) {
                 done(new Error("This notification's doesn't have exactly one entry."));
             }
-            else if(notification.entries[0].postedTime > new Date().getTime()) {
+            else if(notification.entries[0].postedTime >= new Date().getTime()) {
                 done(new Error("This notification's entry can't have been posted in the future."));
             }
-            else if(notification.entries[0].updated > new Date().getTime()) {
+            else if(notification.entries[0].updated >= new Date().getTime()) {
                 done(new Error("This notification's entry can't have been updated in the future."));
             }
             else if(notification.entries[0].updated !== notification.entries[0].postedTime) {
