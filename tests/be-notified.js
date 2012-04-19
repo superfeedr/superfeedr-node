@@ -52,9 +52,6 @@ describe('Subscription', function(){
             else if(notification.entries[0].updated >= new Date().getTime()) {
                 done(new Error("This notification's entry can't have been updated in the future."));
             }
-            else if(notification.entries[0].updated !== notification.entries[0].postedTime) {
-                done(new Error("This notification's entry must be an new entry."));
-            }
             else if(notification.entries[0].title !== "Hello") {
                 done(new Error("This notification's entry doesn't have 'Hello' for title."));
             }
