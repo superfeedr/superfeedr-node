@@ -1,8 +1,8 @@
-var Superfeedr  = require('../lib/superfeedr.js').Superfeedr;
+var Superfeedr  = require('../lib/superfeedr.js');
 
 describe('CheckForTwoNewItems', function(){
     var client = null;
-    
+
     before(function(done) {
         client = new Superfeedr("nodesample", "nodesample");
         client.on('connected', function() {
@@ -14,11 +14,11 @@ describe('CheckForTwoNewItems', function(){
             });
         });
     });
-    
+
     beforeEach(function() {
-        // Ran before each test.        
+        // Ran before each test.
     });
-    
+
     it('should receive a notification with two items', function(done){
         console.log('Ready. Please trigger update at http://push-pub.appspot.com/. Put "Hello" in Title and "World" in Message and activate checkbox for "double"!');
         client.on('notification', function(notification) {
@@ -51,11 +51,11 @@ describe('CheckForTwoNewItems', function(){
             }
             else if(notification.entries[1].content !== "World - bis") {
                 done(new Error("This notification's entry doesn't have 'world' for title."));
-            }            
+            }
             else {
                 done(); // Success. No error for now.
             }
         });
     });
 });
-    
+

@@ -1,8 +1,8 @@
-var Superfeedr  = require('../lib/superfeedr.js').Superfeedr;
+var Superfeedr  = require('../lib/superfeedr.js');
 
 describe('Subscription', function(){
     var client = null;
-    
+
     before(function(done) {
         client = new Superfeedr("nodesample", "nodesample","test");
         client.on('connected', function() {
@@ -14,11 +14,11 @@ describe('Subscription', function(){
             });
         });
     });
-    
+
     beforeEach(function() {
-        // Ran before each test.        
+        // Ran before each test.
     });
-    
+
     it('should receive a notification', function(done){
         console.log('Ready. Please trigger update at http://push-pub.appspot.com/. Put "Hello" in Title and "World" in Message');
         client.on('notification', function(notification) {
@@ -67,4 +67,4 @@ describe('Subscription', function(){
         });
     });
 });
-    
+

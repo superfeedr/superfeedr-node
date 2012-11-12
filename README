@@ -1,9 +1,0 @@
-A library to interract with Superfeedr's API from within a node application. [this uses the XMPP API as node is just the perfect web-friendly framework for it].
-
-INSTALL:
-
-`npm install -g superfeedr`
-
-USAGE
-
-Check examples :)
