@@ -1,16 +1,20 @@
 var Superfeedr  = require('../lib/superfeedr.js');
 
-describe('Subscription', function(){
+describe('BeNotifiedWithResource', function(){
     var client = null;
 
     before(function(done) {
         client = new Superfeedr("nodesample", "nodesample","test");
         client.on('connected', function() {
             client.subscribe("http://push-pub.appspot.com/feed", function(err, feed) {
-                // console.log(feed); // If you want to see the full feed object.
-                if(!err && feed.url === "http://push-pub.appspot.com/feed") {
-                    done(); // Success. No error for now.
+                if(err) {
+                    done(err);
                 }
+
+                if(feed.url !== "http://push-pub.appspot.com/feed") {
+                    done(new Error("The feed url is wrong " + feed.url));
+                }
+                done(); // Success. No error for now.
             });
         });
     });
