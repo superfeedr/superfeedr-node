@@ -1,6 +1,6 @@
 var Superfeedr  = require('../lib/superfeedr.js');
 
-describe('Subscription', function(){
+describe('unsubscribe', function(){
     var client = null;
 
     before(function(done) {

@@ -1,16 +1,19 @@
 var Superfeedr  = require('../lib/superfeedr.js');
 
-describe('CheckForTwoNewItems', function(){
+describe('BeNotifiedWithTwo', function(){
     var client = null;
 
     before(function(done) {
         client = new Superfeedr("nodesample", "nodesample");
         client.on('connected', function() {
             client.subscribe("http://push-pub.appspot.com/feed", function(err, feed) {
-                // console.log(feed); // If you want to see the full feed object.
-                if(!err && feed.url === "http://push-pub.appspot.com/feed") {
-                    done(); // Success. No error for now.
+                if (err) {
+                    done(err);
                 }
+                if (feed.url !== "http://push-pub.appspot.com/feed") {
+                    done(new Error("The feed url is wrong " + feed.url));
+                }
+                done(); // Success. No error for now.
             });
         });
     });
@@ -20,6 +23,7 @@ describe('CheckForTwoNewItems', function(){
     });
 
     it('should receive a notification with two items', function(done){
+
         console.log('Ready. Please trigger update at http://push-pub.appspot.com/. Put "Hello" in Title and "World" in Message and activate checkbox for "double"!');
         client.on('notification', function(notification) {
             if(notification.feed.url !== "http://push-pub.appspot.com/feed") {

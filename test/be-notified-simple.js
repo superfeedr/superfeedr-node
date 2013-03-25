@@ -1,6 +1,6 @@
 var Superfeedr  = require('../lib/superfeedr.js');
 
-describe('Subscription', function(){
+describe('BeNotifiedSimple', function(){
     var client = null;
 
     before(function(done) {
@@ -54,9 +54,6 @@ describe('Subscription', function(){
             }
             else if(notification.entries[0].title !== "Hello") {
                 done(new Error("This notification's entry doesn't have 'Hello' for title."));
-            }
-            else if(notification.entries[0].content !== "") {
-                done(new Error("This notification's entry has a non empty content"));
             }
             else if(notification.entries[0].content !== "World") {
                 done(new Error("This notification's entry doesn't have 'World' for message."));
