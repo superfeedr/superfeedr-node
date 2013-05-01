@@ -1,3 +1,4 @@
+var request = require('request');
 var Superfeedr  = require('../lib/superfeedr.js');
 
 describe('BeNotifiedWithResource', function(){
@@ -24,7 +25,7 @@ describe('BeNotifiedWithResource', function(){
     });
 
     it('should receive a notification', function(done){
-        console.log('Ready. Please trigger update at http://push-pub.appspot.com/. Put "Hello" in Title and "World" in Message');
+
         client.on('notification', function(notification) {
             if(notification.feed.url !== "http://push-pub.appspot.com/feed") {
                 done(new Error("This notification was not for the right feed"));
@@ -56,19 +57,33 @@ describe('BeNotifiedWithResource', function(){
             else if(notification.entries[0].updated > new Date().getTime()) {
                 done(new Error("This notification's entry can't have been updated in the future."));
             }
-            else if(notification.entries[0].title !== "Hello") {
-                done(new Error("This notification's entry doesn't have 'hello' for title."));
+            else if(notification.entries[0].title !== title) {
+                done(new Error("This notification's entry doesn't have the right title."));
             }
-            else if(notification.entries[0].summary !== "") {
+            else if(notification.entries[0].summary && notification.entries[0].summary !== "") {
                 done(new Error("This notification's entry has a non empty summary"));
             }
-            else if(notification.entries[0].content !== "World") {
-                done(new Error("This notification's entry doesn't have 'world' for title."));
+            else if(notification.entries[0].content !== content) {
+                done(new Error("This notification's entry doesn't have the right content."));
             }
             else {
                 done(); // Success. No error for now.
             }
         });
+
+        var title = 'Testing Node.js wrapper for Superfeedr';
+        var content = Date.now().toString();
+        var params = {
+            form: {}
+        };
+        params.form = {
+            'title': title,
+            'content': content,
+            'double': '',
+            'hub': 'http://pubsubhubbub.superfeedr.com',
+            'name': ''
+        };
+        request.post('http://push-pub.appspot.com/', params);
     });
 });
 

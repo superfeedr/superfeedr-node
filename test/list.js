@@ -10,8 +10,12 @@ describe('List', function(){
         });
     });
 
-    beforeEach(function() {
-        // Ran before each test.
+    beforeEach(function(done) {
+        client.subscribe("http://push-pub.appspot.com/feed", function(err, feed) {
+            client.subscribe("http://blog.superfeedr.com/atom.xml", function(err, feed) {
+                done();
+            });
+        });
     });
 
     it('should list our (correct) subscriptions', function(done) {
