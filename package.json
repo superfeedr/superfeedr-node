@@ -3,7 +3,7 @@
   "name": "superfeedr",
   "main": "./lib/superfeedr.js",
   "description": "A package to interact with Superfeedr's API and get pushed RSS/atom content",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "homepage": "http://superfeedr.com/documentation#xmpp_pubsub",
   "repository": {
     "type": "git",
