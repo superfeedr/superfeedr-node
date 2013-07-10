@@ -1,4 +1,4 @@
-var Superfeedr = require('superfeedr').Superfeedr;
+var Superfeedr = require('superfeedr');
 
 client = new Superfeedr("login", "password");
 client.on('connected', function() {
