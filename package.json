@@ -19,5 +19,8 @@
       "mocha": "0.1.0",
       "request": "*",
       "underscore": "*"
+  },
+  "scripts": {
+    "test": "export NODE_ENV=test; mocha "
   }
 }
