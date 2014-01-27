@@ -42,21 +42,47 @@ describe('superfeedr', function () {
     });
 
 
-    // describe('retrieve', function() {
-    //     before(function(done) {
-    //         client.subscribe("http://blog.superfeedr.com/atom.xml", function(err, feed) {
-    //             if(!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog : Real-time cloudy thoughts from a super-hero') {
-    //                 done();
-    //             }
-    //         });
-    //     });
+    describe('retrieve', function() {
+        before(function(done) {
+            client.subscribe("http://blog.superfeedr.com/atom.xml", function(err, feed) {
+                if(!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog : Real-time cloudy thoughts from a super-hero') {
+                    done();
+                }
+            });
+        });
 
-    //     it('should call the subscription callback', function(done) {
-    //         client.retrieve('http://blog.superfeedr.com/atom.xml', function(err, feed) {
-    //             console.log(err, feed);
-    //         });
-    //     });
-    // });
+        it('should call the subscription callback', function(done) {
+            client.retrieve('http://push-pub.appspot.com/feed', function(err, feed) {
+                if (err)
+                    done(new Error("There was an error"));
+
+                if (!feed)
+                    done(new Error("The feed was not retrieved"));
+
+                if (!feed.entries || feed.entries.length < 1)
+                    done(new Error('The feed should include entries'));
+
+                var entry = feed.entries[0];
+
+                if(!entry.links)
+                    done(new Error('The entry should have links'));
+
+                if(!entry.title)
+                    done(new Error('The entry should have a title'));
+
+                if(!entry.content)
+                    done(new Error('The entry should have a content'));
+
+                if(!entry.id)
+                    done(new Error('The entry should have a id'));
+
+                if(!entry.link)
+                    done(new Error('The entry should have a link'));
+
+                done();
+            });
+        });
+    });
 
 
     describe('subscribe', function () {
@@ -98,7 +124,20 @@ describe('superfeedr', function () {
         describe('BeNotifiedSimple', function () {
 
             it('should receive a notification', function (done) {
+                var title = 'Testing Node.js wrapper for Superfeedr';
+                var content = Date.now().toString();
+                var params = {
+                    form: {}
+                };
+                params.form = {
+                    'title': title,
+                    'content': content,
+                    'double': '',
+                    'hub': 'http://pubsubhubbub.superfeedr.com',
+                    'name': ''
+                };
                 var onNotification = function (notification) {
+
                     if (notification.feed.url !== "http://push-pub.appspot.com/feed") {
                         done(new Error("This notification was not for the right feed"));
                     } else if (notification.feed.title !== "Publisher example") {
@@ -122,26 +161,13 @@ describe('superfeedr', function () {
                     } else if (notification.entries[0].title !== title) {
                         done(new Error("This notification's entry doesn't have the right title."));
                     } else if (notification.entries[0].content !== content) {
-                        done(new Error("This notification's entry doesn't have the right content."));
+                        done(new Error("This notification's entry doesn't have the right content. We got ", notification.entries[0].content, " but expected ", content));
                     } else {
                         client.removeAllListeners('notification');
                         done();
                     }
                 }
                 client.on('notification', onNotification);
-
-                var title = 'Testing Node.js wrapper for Superfeedr';
-                var content = Date.now().toString();
-                var params = {
-                    form: {}
-                };
-                params.form = {
-                    'title': title,
-                    'content': content,
-                    'double': '',
-                    'hub': 'http://pubsubhubbub.superfeedr.com',
-                    'name': ''
-                };
                 request.post('http://push-pub.appspot.com/', params);
             });
         });
