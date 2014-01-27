@@ -6,9 +6,18 @@ A library to interract with Superfeedr's [XMPP API](http://superfeedr.com/docume
 Install
 -------
 
-`npm install -g superfeedr`
+`npm install superfeedr`
 
 Usage
 -----
 
-Check the basic example :)
+All [XMPP calls from the Superfeedr API](http://documentation.superfeedr.com/subscribers.html#xmpppubsub) are supported:
+
+* Subscribe
+* Unsubscribe
+* List subscriptions
+* Retrieve feed's historical data
+
+It also handles notifications.
+
+Check the basic example for more details.

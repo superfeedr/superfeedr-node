@@ -16,7 +16,7 @@ client.on('connected', function() {
     });
     client.on('notification', function(notification) {
         // console.log(notification);
-        // { feed: 
+        // { feed:
         //    { url: 'http://push-pub.appspot.com/feed',
         //      title: 'Publisher example',
         //      httpCode: 200,
@@ -26,7 +26,7 @@ client.on('connected', function() {
         //      lastFetch: 1323482789000,
         //      lastParse: 1323482791000,
         //      lastMaintenance: 1323436703000 },
-        //   entries: 
+        //   entries:
         //    [ { id: 'http://push-pub.appspot.com/feed/93006',
         //        postedTime: 1323482787,
         //        updated: 1323482787,
@@ -35,5 +35,8 @@ client.on('connected', function() {
         //        content: 'World',
         //        actor: [Object] } ] }
     });
-    
+
+    client.retrieve("http://blog.superfeedr.com/atom.xml", function(err, feed) {
+        console.log(feed);
+    })
 });
