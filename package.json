@@ -13,12 +13,14 @@
     "node": ">=0.6.0"
   },
   "dependencies": {
-      "node-xmpp": ">=0.3.1"
+    "ltx": "^0.9.0",
+    "node-xmpp-client": "^1.0.0-alpha20",
+    "node-xmpp-core": "^1.0.0-alpha14"
   },
   "devDependencies": {
-      "mocha": "0.1.0",
-      "request": "*",
-      "underscore": "*"
+    "mocha": "0.1.0",
+    "request": "*",
+    "underscore": "*"
   },
   "scripts": {
     "test": "export NODE_ENV=test; mocha "
