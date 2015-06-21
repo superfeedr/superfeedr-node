@@ -9,6 +9,9 @@ describe('superfeedr', function () {
     before(function (done) {
         client = new Superfeedr("nodesample", "nodesample");
         client.on('connected', done);
+        client.on('error', function(err) {
+            done(new Error(err));
+        });
     });
 
     describe('List', function () {
