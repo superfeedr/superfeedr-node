@@ -7,7 +7,7 @@ describe('superfeedr', function () {
     var client = null;
 
     before(function (done) {
-        client = new Superfeedr("nodesample", "nodesample");
+        client = new Superfeedr("nodesuperfeedrTest", "nodesuperfeedrTest123");
         client.on('connected', done);
         client.on('error', function(err) {
             done(new Error(err));
