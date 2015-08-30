@@ -1,4 +1,4 @@
-<img src="https://travis-ci.org/davepenfold/superfeedr-node.svg?branch=master" />
+<a href="https://travis-ci.org/davepenfold/superfeedr-node"><img src="https://travis-ci.org/davepenfold/superfeedr-node.svg?branch=master" /></a>
 
 Superfeedr-node
 ===============
