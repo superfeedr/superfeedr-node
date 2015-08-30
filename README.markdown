@@ -1,3 +1,5 @@
+<img src="https://travis-ci.org/davepenfold/superfeedr-node.svg?branch=master" />
+
 Superfeedr-node
 ===============
 
