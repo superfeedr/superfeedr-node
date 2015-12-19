@@ -7,8 +7,11 @@ describe('superfeedr', function () {
     var client = null;
 
     before(function (done) {
-        client = new Superfeedr("nodesample", "nodesample");
+        client = new Superfeedr("nodesuperfeedrTest", "nodesuperfeedrTest123");
         client.on('connected', done);
+        client.on('error', function(err) {
+            done(new Error(err));
+        });
     });
 
     describe('List', function () {
@@ -45,7 +48,7 @@ describe('superfeedr', function () {
     describe('retrieve', function() {
         before(function(done) {
             client.subscribe("http://blog.superfeedr.com/atom.xml", function(err, feed) {
-                if(!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog : Real-time cloudy thoughts from a super-hero') {
+                if(!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog') {
                     done();
                 }
             });
@@ -89,7 +92,7 @@ describe('superfeedr', function () {
 
         it('should call the subscription callback', function (done) {
             client.subscribe("http://blog.superfeedr.com/atom.xml", function (err, feed) {
-                if (!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog : Real-time cloudy thoughts from a super-hero') {
+                if (!err && feed.url === "http://blog.superfeedr.com/atom.xml" && feed.title === 'Superfeedr Blog') {
                     done();
                 }
             });
